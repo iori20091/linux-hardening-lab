@@ -47,7 +47,7 @@ linux-hardening-lab/
 
 # Ferramentas
 
-- Ubuntu Server
+- Debian
 - Bash
 - OpenSSH
 - UFW
