@@ -23,3 +23,22 @@ uname -m
 echo
 echo "Tempo ligado"
 uptime
+
+
+echo
+echo "==============================="
+echo "Usuários conectados"
+echo "==============================="
+who
+
+echo
+echo "==============================="
+echo "Informações do usuário"
+echo "==============================="
+id
+
+echo
+echo "==============================="
+echo "Grupos"
+echo "==============================="
+groups
