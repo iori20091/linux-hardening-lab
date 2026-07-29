@@ -11,7 +11,7 @@ Identificar o ambiente Linux utilizado durante o laboratório.
 ### Nome do sistema
 
 ```bash
-hostnamectl
+hostname
 ```
 
 ### Distribuição
