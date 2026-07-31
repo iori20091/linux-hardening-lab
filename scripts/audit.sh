@@ -90,3 +90,15 @@ echo "==============================="
 echo "Conexões estabelecidas"
 echo "==============================="
 ss -tun
+
+echo
+echo "==============================="
+echo "Últimos logs"
+echo "==============================="
+journalctl -n 10 --no-pager
+
+echo
+echo "==============================="
+echo "Últimos erros"
+echo "==============================="
+journalctl -p err -n 10 --no-pager
