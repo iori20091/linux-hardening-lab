@@ -9,7 +9,7 @@
 
 ## Objetivo
 
-Este projeto demonstra a aplicação de técnicas de Hardening em sistemas Linux utilizando Ubuntu Server.
+Este projeto demonstra a aplicação de técnicas de Hardening em sistemas Linux utilizando Debian.
 
 O objetivo é construir um laboratório prático de Cibersegurança documentando procedimentos de administração, auditoria e segurança.
 
@@ -57,11 +57,39 @@ linux-hardening-lab/
 
 ---
 
-# Documentação
+## Documentação
 
-Toda a documentação está organizada na pasta `docs`.
-
+- [Informações do Sistema](docs/system-information.md)
+- [Usuários](docs/users.md)
+- [Permissões](docs/permissions.md)
+- [SSH](docs/ssh.md)
+- [Firewall](docs/firewall.md)
+- [Serviços](docs/services.md)
+- [Logs](docs/logs.md)
+- [Atualizações](docs/updates.md)
+- [Cron](docs/cron.md)
+- [Hardening](docs/hardening.md)
+- [Relatório Executivo](reports/final-report.md)
 ---
+
+
+## Evidências
+
+### Auditoria de SSH
+
+![SSH](screenshots/ssh.png)
+
+### Firewall
+
+![Firewall](screenshots/firewall.png)
+
+### Logs
+
+![Logs](screenshots/logs.png)
+
+### Atualizações
+
+![Updates](screenshots/updates.png)
 
 # Licença
 
