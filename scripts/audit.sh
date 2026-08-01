@@ -1,8 +1,8 @@
 #!/bin/bash
 
-echo "==============================="
+echo "================================"
 echo " Linux Hardening Lab Audit"
-echo "==============================="
+echo "================================"
 
 echo
 echo "Hostname"
@@ -10,7 +10,11 @@ hostname
 
 echo
 echo "Sistema Operacional"
-cat /etc/os-release
+if [ -f /etc/os-release ]; then
+    grep PRETTY_NAME /etc/os-release
+else
+    echo "Arquivo /etc/os-release não encontrado"
+fi
 
 echo
 echo "Kernel"
@@ -22,96 +26,128 @@ uname -m
 
 echo
 echo "Tempo ligado"
-uptime
-
-
-echo
-echo "==============================="
-echo "Usuários conectados"
-echo "==============================="
-who
+if command -v uptime >/dev/null 2>&1; then
+    uptime
+else
+    echo "Comando uptime não disponível"
+fi
 
 echo
-echo "==============================="
-echo "Informações do usuário"
-echo "==============================="
+echo "================================"
+echo "Usuário atual"
+echo "================================"
 id
 
 echo
-echo "==============================="
 echo "Grupos"
-echo "==============================="
 groups
 
 echo
-echo "==============================="
-echo "Permissões do diretório atual"
-echo "==============================="
+echo "================================"
+echo "Permissões do diretório"
+echo "================================"
 ls -la
 
 echo
-echo "==============================="
+echo "================================"
 echo "SSH"
-echo "==============================="
+echo "================================"
 
-systemctl is-active ssh
-systemctl is-enabled ssh
+if command -v systemctl >/dev/null 2>&1; then
+    systemctl is-active ssh
+    systemctl is-enabled ssh
+else
+    echo "systemctl não disponível"
+fi
 
 echo
 echo "Versão do OpenSSH"
-ssh -V 2>&1
+if command -v ssh >/dev/null 2>&1; then
+    ssh -V 2>&1
+else
+    echo "OpenSSH não encontrado"
+fi
 
 echo
-echo "==============================="
+echo "================================"
 echo "Serviços ativos"
-echo "==============================="
-systemctl list-units --type=service --state=running --no-pager
+echo "================================"
+
+if command -v systemctl >/dev/null 2>&1; then
+    systemctl list-units --type=service --state=running --no-pager
+else
+    echo "systemctl não disponível"
+fi
 
 echo
-echo "==============================="
-echo "Top 5 processos por CPU"
-echo "==============================="
-ps aux --sort=-%cpu | head -6
+echo "================================"
+echo "Processos por CPU"
+echo "================================"
+
+if ps --help 2>&1 | grep -q -- '--sort'; then
+    ps aux --sort=-%cpu | head -6
+else
+    echo "Opção de ordenação não disponível nesta versão do ps"
+fi
 
 echo
-echo "==============================="
-echo "Top 5 processos por Memória"
-echo "==============================="
-ps aux --sort=-%mem | head -6
-
-echo
-echo "==============================="
+echo "================================"
 echo "Portas abertas"
-echo "==============================="
-ss -tuln
+echo "================================"
+
+if command -v ss >/dev/null 2>&1; then
+    ss -tuln
+else
+    echo "ss não disponível"
+fi
 
 echo
-echo "==============================="
-echo "Conexões estabelecidas"
-echo "==============================="
-ss -tun
+echo "================================"
+echo "Conexões"
+echo "================================"
+
+if command -v ss >/dev/null 2>&1; then
+    ss -tun
+else
+    echo "ss não disponível"
+fi
 
 echo
-echo "==============================="
+echo "================================"
 echo "Últimos logs"
-echo "==============================="
-journalctl -n 10 --no-pager
+echo "================================"
+
+if command -v journalctl >/dev/null 2>&1; then
+    journalctl -n 10 --no-pager
+else
+    echo "journalctl não disponível"
+fi
 
 echo
-echo "==============================="
+echo "================================"
 echo "Últimos erros"
-echo "==============================="
-journalctl -p err -n 10 --no-pager
+echo "================================"
 
+if command -v journalctl >/dev/null 2>&1; then
+    journalctl -p err -n 10 --no-pager
+else
+    echo "journalctl não disponível"
+fi
 
 echo
-echo "==============================="
+echo "================================"
 echo "Cron"
-echo "==============================="
+echo "================================"
 
-systemctl is-active cron
-systemctl is-enabled cron
+if command -v systemctl >/dev/null 2>&1; then
+    systemctl is-active cron
+    systemctl is-enabled cron
+fi
 
 echo
 echo "Tarefas agendadas do sistema"
-ls -la /etc/cron.d/ 2>/dev/null
+if [ -d /etc/cron.d ]; then
+    ls -la /etc/cron.d/
+else
+    echo "/etc/cron.d não encontrado"
+fi
