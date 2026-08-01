@@ -74,3 +74,27 @@ O processo de hardening segue os seguintes princípios:
 - Monitoramento de eventos.
 - Controle de acesso.
 - Defesa em profundidade.
+
+## Correções Aplicadas
+
+### Atualizações
+
+O sistema foi atualizado através do gerenciador de pacotes do Debian.
+
+**Ação:**
+- `apt update`
+- `apt upgrade`
+
+**Objetivo:**
+Reduzir a exposição a vulnerabilidades conhecidas presentes em pacotes desatualizados.
+
+---
+
+### SSH
+
+A configuração do SSH foi revisada.
+
+**Configuração aplicada:**
+
+```text
+PermitRootLogin no
