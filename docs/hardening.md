@@ -24,7 +24,7 @@ Avaliar configurações de segurança do sistema Debian utilizando uma abordagem
 
 - [x] Identificação de serviços ativos
 - [x] Identificação de serviços habilitados
-- [ ] Remoção/desativação de serviços desnecessários
+- [x] Remoção/desativação de serviços desnecessários
 
 ## 4. Firewall
 
@@ -36,7 +36,7 @@ Avaliar configurações de segurança do sistema Debian utilizando uma abordagem
 
 - [x] Atualização dos índices de pacotes
 - [x] Verificação de pacotes atualizáveis
-- [ ] Aplicação de atualizações pendentes
+- [x] Aplicação de atualizações pendentes
 
 ## 6. Permissões
 
