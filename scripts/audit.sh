@@ -151,3 +151,24 @@ if [ -d /etc/cron.d ]; then
 else
     echo "/etc/cron.d não encontrado"
 fi
+
+echo
+echo "================================"
+echo "Hardening"
+echo "================================"
+
+echo
+echo "Usuários com UID 0:"
+awk -F: '$3 == 0 {print $1}' /etc/passwd
+
+echo
+echo "Grupo sudo:"
+getent group sudo
+
+echo
+echo "Arquivos SUID:"
+find /usr/bin /usr/sbin -perm -4000 -type f 2>/dev/null
+
+echo
+echo "Arquivos world-writable em diretórios sensíveis:"
+find /etc /usr/local /opt -type f -perm -0002 -ls 2>/dev/null
