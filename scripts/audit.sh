@@ -102,3 +102,16 @@ echo "==============================="
 echo "Últimos erros"
 echo "==============================="
 journalctl -p err -n 10 --no-pager
+
+
+echo
+echo "==============================="
+echo "Cron"
+echo "==============================="
+
+systemctl is-active cron
+systemctl is-enabled cron
+
+echo
+echo "Tarefas agendadas do sistema"
+ls -la /etc/cron.d/ 2>/dev/null
